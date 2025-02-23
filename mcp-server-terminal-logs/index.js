@@ -2,7 +2,6 @@ const {
   StdioServerTransport,
 } = require("@modelcontextprotocol/sdk/server/stdio.js");
 const { McpServer } = require("@modelcontextprotocol/sdk/server");
-const { z } = require("zod");
 const fs = require("fs").promises;
 const path = require("path");
 
@@ -46,10 +45,10 @@ async function cleanupFile() {
 
 const server = new McpServer({
   version: "1.0.0",
-  name: "Log File Reader",
+  name: "Get terminal logs",
 });
 
-server.tool("readLogs", {}, async () => {
+server.tool("read-logs", {}, async () => {
   try {
     await ensureLogDirectory();
     const logs = await readLastLines();
